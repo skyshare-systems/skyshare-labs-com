@@ -1,23 +1,72 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { MuseoModerno } from "next/font/google";
+import { useIntersection } from "react-use";
+import { gsap, Power3 } from "gsap";
+
 import Image from "next/image";
-import {
-  data_clients,
-  data_experience,
-  data_services,
-} from "@/utils/json/json-data";
+import { data_experience, data_services } from "@/utils/json/json-data";
+import useSwitch from "@/hooks/useSwitch";
 
 const museo_moderno = MuseoModerno({
   subsets: ["latin"],
 });
 
 const InfoSection = () => {
-  const [name, setName] = useState("Industry Experience");
-  const [title, setTitle] = useState("");
+  const { name, title, setName, setTitle } = useSwitch();
+  const sectionRef = useRef(null);
+
+  const intersection = useIntersection(sectionRef, {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.1,
+  });
+
+  const focusHover = (element: any) => {
+    gsap.from(element, {
+      opacity: 0.5,
+      scale: 1,
+    });
+    gsap.to(element, {
+      opacity: 1,
+      scale: 1.2,
+      duration: 1.5,
+      ease: "power4.out",
+      stagger: {
+        amount: 0.3,
+      },
+    });
+  };
+
+  const notFocus = (element: any) => {
+    gsap.from(element, {
+      opacity: 1,
+      scale: 1.2,
+    });
+    gsap.to(element, {
+      opacity: 0.5,
+      scale: 1,
+      duration: 1.5,
+      ease: "power4.out",
+      stagger: {
+        amount: 0.3,
+      },
+    });
+  };
+
+  useEffect(() => {
+    intersection && intersection.intersectionRatio > 0.1
+      ? focusHover("#info-icon")
+      : notFocus("#info-icon");
+  }, [intersection]);
+
   return (
-    <div className="flex justify-center items-center py-[10rem] h-auto bg-[#001a29] bg-[url('/assets/info/noise-bg.png')] bg-top bg-fixed bg-no-repeat bg-cover">
+    <div
+      id="info-section"
+      ref={sectionRef}
+      className="snap-start flex justify-center items-center py-[10rem] h-auto bg-[#001a29] bg-[url('/assets/info/noise-bg.png')] bg-top bg-fixed bg-no-repeat bg-cover"
+    >
       <div className="flex flex-col gap-8 justify-center items-center w-full max-w-[1400px] px-[1rem] 2xl:px-4">
         <div className="flex flex-col lg:flex-row justify-between items-center gap-8 self-stretch">
           <div className="flex flex-col p-8 h-auto lg:h-full w-full lg:max-w-[450px] lg:max-h-[316px] bg-[#002133] rounded-2xl gap-4">
@@ -115,10 +164,12 @@ const InfoSection = () => {
                   <div
                     key={index}
                     className="flex flex-row w-full max-w-[280px] items-center justify-between p-4 gap-8 rounded-lg hover:bg-[#002133] duration-300 cursor-pointer"
-                    onMouseEnter={() => setTitle(data.title)}
-                    onMouseLeave={() => setTitle("")}
                   >
-                    <div className="flex flex-row gap-4 items-center">
+                    <div
+                      className="flex flex-row gap-4 items-center"
+                      onMouseEnter={() => setTitle(data.title)}
+                      onMouseLeave={() => setTitle("")}
+                    >
                       <Image
                         src={data.imgUrl}
                         alt="pm"
@@ -194,19 +245,24 @@ const InfoSection = () => {
             </h1>
 
             <div className="flex flex-wrap justify-evenly items-center gap-8">
-              {data_clients.map((data, index) => {
-                return (
-                  <motion.div key={index} whileHover={{ scale: 1.05 }}>
-                    <Image
-                      src={data.imgUrlHover}
-                      alt={data.name}
-                      height={130}
-                      width={130}
-                      className="grayscale hover:grayscale-0 duration-300"
-                    />
-                  </motion.div>
-                );
-              })}
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                className={`h-[75px] w-[75px]  bg-[url('/assets/clients/hfc.png')] hover:bg-[url('/assets/clients/onhover/hfc.png')] bg-center bg-contain duration-75 max-w-[75px] max-h-[75px] bg-no-repeat`}
+              />
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                className={`h-[75px] w-[75px]  bg-[url('/assets/clients/lab.png')] hover:bg-[url('/assets/clients/onhover/lab.png')] bg-center bg-contain duration-75 max-w-[75px] max-h-[75px] bg-no-repeat`}
+              />
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                className={`h-[75px] w-[75px]  bg-[url('/assets/clients/ths.png')] hover:bg-[url('/assets/clients/onhover/ths.png')] bg-center bg-contain duration-75 max-w-[75px] max-h-[75px] bg-no-repeat`}
+              />
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                className={`h-[75px] w-[75px]  bg-[url('/assets/clients/crabbit.png')] hover:bg-[url('/assets/clients/onhover/crabbit.png')] bg-center bg-contain duration-75 max-w-[75px] max-h-[75px] bg-no-repeat`}
+              />
+
+              <p className="text-[#00A3FF]">and many more!</p>
             </div>
           </div>
         </div>

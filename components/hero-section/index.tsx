@@ -1,15 +1,68 @@
-import React from "react";
+"use client";
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { MuseoModerno } from "next/font/google";
+import { useIntersection } from "react-use";
+import { gsap, Power3 } from "gsap";
 
 const museo_moderno = MuseoModerno({
   subsets: ["latin"],
 });
 
 const HeroSection = () => {
+  const sectionRef = useRef(null);
+
+  const intersection = useIntersection(sectionRef, {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.1,
+  });
+
+  const focusHover = (element: any) => {
+    gsap.from(element, {
+      opacity: 0.5,
+      scale: 1,
+    });
+    gsap.to(element, {
+      opacity: 1,
+      scale: 1.2,
+      duration: 1.5,
+      ease: "power4.out",
+      stagger: {
+        amount: 0.3,
+      },
+    });
+  };
+
+  const notFocus = (element: any) => {
+    gsap.from(element, {
+      opacity: 1,
+      scale: 1.2,
+    });
+    gsap.to(element, {
+      opacity: 0.5,
+      scale: 1,
+      duration: 1.5,
+      ease: "power4.out",
+      stagger: {
+        amount: 0.3,
+      },
+    });
+  };
+
+  useEffect(() => {
+    intersection && intersection.intersectionRatio > 0.1
+      ? focusHover("#house-icon")
+      : notFocus("#house-icon");
+  }, [intersection]);
+
   return (
-    <div className="flex justify-center items-center h-auto 2xl:h-screen bg-[#00121f] bg-[url('/assets/hero/bg-skyshare.png')] bg-top bg-fixed bg-no-repeat bg-cover">
-      <div className="relative flex flex-col 2xl:flex-row justify-between items-center max-w-[1800px] w-full h-full pt-[5rem] px-[1rem] lg:px-4">
+    <div
+      id="hero-section"
+      ref={sectionRef}
+      className="snap-start flex justify-center items-center h-auto 2xl:h-screen bg-[#00121f] bg-[url('/assets/hero/bg-skyshare.png')] bg-top bg-fixed bg-no-repeat bg-cover"
+    >
+      <div className="relative flex flex-col 2xl:flex-row justify-between items-center max-w-[1700px] w-full h-full pt-[5rem] px-[1rem] lg:px-4">
         <div className="flex flex-col gap-4 md:gap-8">
           <h1
             className={`${museo_moderno.className} text-white/75 text-2xl font-semibold`}

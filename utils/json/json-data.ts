@@ -62,22 +62,22 @@ export const data_services = [
 export const data_clients = [
   {
     name: "hfc",
-    imgUrl: "/assets/clients/hfc.png",
-    imgUrlHover: "/assets/clients/onhover/hfc.png",
+    imgUrl: "bg-[url('/assets/clients/hfc.png')]",
+    imgUrlHover: "hover:bg-[url('/assets/clients/onhover/hfc.png')]",
   },
   {
     name: "lab",
-    imgUrl: "/assets/clients/lab.png",
-    imgUrlHover: "/assets/clients/onhover/lab.png",
+    imgUrl: "bg-[url('/assets/clients/lab.png')]",
+    imgUrlHover: "hover:bg-[url('/assets/clients/onhover/lab.png')]",
   },
   {
     name: "ths",
-    imgUrl: "/assets/clients/ths.png",
-    imgUrlHover: "/assets/clients/onhover/ths.png",
+    imgUrl: "bg-[url('/assets/clients/ths.png')]",
+    imgUrlHover: "hover:bg-[url('/assets/clients/onhover/ths.png')]",
   },
   {
     name: "crabbit",
-    imgUrl: "/assets/clients/crabbit.png",
-    imgUrlHover: "/assets/clients/onhover/crabbit.png",
+    imgUrl: "bg-[url('/assets/clients/crabbit.png')]",
+    imgUrlHover: "hover:bg-[url('/assets/clients/onhover/crabbit.png')]",
   },
 ];
