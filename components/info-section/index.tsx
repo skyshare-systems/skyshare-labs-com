@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { MuseoModerno } from "next/font/google";
 import { useIntersection } from "react-use";
 import { gsap, Power3 } from "gsap";
+import Link from "next/link";
 
 import Image from "next/image";
 import { data_experience, data_services } from "@/utils/json/json-data";
@@ -14,7 +15,7 @@ const museo_moderno = MuseoModerno({
 });
 
 const InfoSection = () => {
-  const { name, title, setName, setTitle } = useSwitch();
+  const { name, title, setName, setTitle, setFocusSection } = useSwitch();
   const sectionRef = useRef(null);
 
   const intersection = useIntersection(sectionRef, {
@@ -55,21 +56,32 @@ const InfoSection = () => {
     });
   };
 
+  const animation = () => {
+    focusHover("#info-icon");
+  };
+
   useEffect(() => {
     intersection && intersection.intersectionRatio > 0.1
-      ? focusHover("#info-icon")
+      ? animation()
       : notFocus("#info-icon");
   }, [intersection]);
 
   return (
     <div
-      id="info-section"
       ref={sectionRef}
       className="snap-start flex justify-center items-center py-[10rem] h-auto bg-[#001a29] bg-[url('/assets/info/noise-bg.png')] bg-top bg-fixed bg-no-repeat bg-cover"
     >
-      <div className="flex flex-col gap-8 justify-center items-center w-full max-w-[1400px] px-[1rem] 2xl:px-4">
+      <div
+        className="flex flex-col gap-8 justify-center items-center w-full max-w-[1400px] px-[1rem] 2xl:px-4 "
+        id="info-section"
+      >
         <div className="flex flex-col lg:flex-row justify-between items-center gap-8 self-stretch">
-          <div className="flex flex-col p-8 h-auto lg:h-full w-full lg:max-w-[450px] lg:max-h-[316px] bg-[#002133] rounded-2xl gap-4">
+          <div
+            className="flex flex-col p-8 h-auto lg:h-full w-full lg:max-w-[450px] lg:max-h-[316px] bg-[#002133] rounded-2xl gap-4"
+            data-aos="fade-up"
+            data-aos-offset="500"
+            data-aos-duration="1000"
+          >
             <p className="font-[clash] text-2xl text-white/70">
               Your trusted partner for innovative blockchain solutions. We bring
               your vision to life in the evolving world of blockchain
@@ -109,7 +121,12 @@ const InfoSection = () => {
               />
             </div>
           </div>
-          <div className="flex flex-col p-8 h-full lg:h-screen w-full border-2 border-[#00304b] rounded-2xl lg:max-h-[316px] gap-8">
+          <div
+            className="flex flex-col p-8 h-full lg:h-screen w-full border-2 border-[#00304b] rounded-2xl lg:max-h-[316px] gap-8"
+            data-aos="fade-up"
+            data-aos-delay="200"
+            data-aos-duration="1000"
+          >
             <div className="flex flex-wrap items-center gap-4 justify-evenly p-4">
               {data_experience.map((data, index) => {
                 return (
@@ -152,7 +169,12 @@ const InfoSection = () => {
         </div>
 
         <div className="flex flex-col 2xl:flex-row justify-evenly items-center gap-8 w-full h-full">
-          <div className="flex flex-col justify-between w-full h-full border-2 border-[#00304b] rounded-2xl max-h-[600px] 2xl:max-h-[316px] p-8 gap-4">
+          <div
+            className="flex flex-col justify-between w-full h-full border-2 border-[#00304b] rounded-2xl max-h-[600px] 2xl:max-h-[316px] p-8 gap-4"
+            data-aos="fade-up"
+            data-aos-delay="400"
+            data-aos-duration="1000"
+          >
             <h1
               className={`${museo_moderno.className} text-white text-3xl font-bold`}
             >
@@ -165,7 +187,8 @@ const InfoSection = () => {
                     key={index}
                     className="flex flex-row w-full max-w-[280px] items-center justify-between p-4 gap-8 rounded-lg hover:bg-[#002133] duration-300 cursor-pointer"
                   >
-                    <div
+                    <Link
+                      href={data.emailUrl}
                       className="flex flex-row gap-4 items-center"
                       onMouseEnter={() => setTitle(data.title)}
                       onMouseLeave={() => setTitle("")}
@@ -185,7 +208,7 @@ const InfoSection = () => {
                           {data.subTitle}
                         </h1>
                       </div>
-                    </div>
+                    </Link>
 
                     <Image
                       src={"/icons/click-icon.svg"}
@@ -201,23 +224,33 @@ const InfoSection = () => {
               })}
             </div>
           </div>
-          <div className="flex flex-col justify-center w-full h-full 2xl:h-screen grow bg-[#002133] sm:min-h-[316px] 2xl:max-h-[316px] rounded-2xl p-8 gap-8">
+          <div
+            className="flex flex-col justify-center w-full h-full 2xl:h-screen grow bg-[#002133] sm:min-h-[316px] 2xl:max-h-[316px] rounded-2xl p-8 gap-8"
+            data-aos="fade-up"
+            data-aos-delay="600"
+            data-aos-duration="1000"
+          >
             <h1
               className={`${museo_moderno.className} text-white text-2xl font-semibold`}
             >
               Unlock blockchain potential with SkyShare Labs, shape the
               decentralized future!
             </h1>
-            <div>
+            <Link href="mailto:quickraven@skysharelabs.com">
               <button className="py-4 px-8 rounded-lg bg-[#0055D5] uppercase font-[clash] text-white font-bold hover:brightness-150 duration-300">
                 Send Us An Email
               </button>
-            </div>
+            </Link>
           </div>
         </div>
 
         <div className="flex flex-col 2xl:flex-row w-full gap-8">
-          <div className="flex flex-col items-center sm:flex-row justify-center p-8 h-auto lg:h-full w-full 2xl:max-w-[450px] lg:min-h-[250px] lg:max-h-[250px] bg-[#002133] rounded-2xl gap-4">
+          <div
+            data-aos="fade-up"
+            data-aos-delay="800"
+            data-aos-duration="1000"
+            className="flex flex-col items-center sm:flex-row justify-center p-8 h-auto lg:h-full w-full 2xl:max-w-[450px] lg:min-h-[250px] lg:max-h-[250px] bg-[#002133] rounded-2xl gap-4"
+          >
             <motion.div
               whileHover={{ scale: 1.05 }}
               className="flex flex-col sm:flex-row gap-4"
@@ -237,7 +270,12 @@ const InfoSection = () => {
             </motion.div>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center sm:justify-evenly p-8 h-full w-full border-2 border-[#00304b] rounded-2xl lg:min-h-[250px] lg:max-h-[250px] gap-8">
+          <div
+            data-aos="fade-up"
+            data-aos-delay="1000"
+            data-aos-duration="1000"
+            className="flex flex-wrap items-center justify-center sm:justify-evenly p-8 h-full w-full border-2 border-[#00304b] rounded-2xl lg:min-h-[250px] lg:max-h-[250px] gap-8"
+          >
             <h1
               className={`${museo_moderno.className} max-w-[127px] text-center text-3xl font-bold text-white`}
             >

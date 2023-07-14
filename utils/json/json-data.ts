@@ -37,25 +37,25 @@ export const data_services = [
     title: "Project",
     subTitle: "Management",
     imgUrl: "/icons/services/pm.png",
-    emailUrl: "",
+    emailUrl: "mailto:lorencecahiwat@skysharelabs.com",
   },
   {
     title: "Blockchain",
     subTitle: "Development",
     imgUrl: "/icons/services/blockchain.png",
-    emailUrl: "",
+    emailUrl: "mailto:harveyresurreccion@sksysharelabs.com",
   },
   {
     title: "Full-Stack",
     subTitle: "Development",
     imgUrl: "/icons/services/full-stack.png",
-    emailUrl: "",
+    emailUrl: "mailto:vincelucas@skysharelabs.com",
   },
   {
     title: "UI/UX",
     subTitle: "Creation",
     imgUrl: "/icons/services/uiux.png",
-    emailUrl: "",
+    emailUrl: "mailto:kevinmecija@skysharelabs.com",
   },
 ];
 

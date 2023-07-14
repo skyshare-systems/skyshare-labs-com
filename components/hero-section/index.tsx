@@ -4,6 +4,8 @@ import Image from "next/image";
 import { MuseoModerno } from "next/font/google";
 import { useIntersection } from "react-use";
 import { gsap, Power3 } from "gsap";
+import Link from "next/link";
+import useSwitch from "@/hooks/useSwitch";
 
 const museo_moderno = MuseoModerno({
   subsets: ["latin"],
@@ -11,7 +13,7 @@ const museo_moderno = MuseoModerno({
 
 const HeroSection = () => {
   const sectionRef = useRef(null);
-
+  const { setFocusSection } = useSwitch();
   const intersection = useIntersection(sectionRef, {
     root: null,
     rootMargin: "0px",
@@ -50,9 +52,13 @@ const HeroSection = () => {
     });
   };
 
+  const animationHero = () => {
+    focusHover("#house-icon");
+  };
+
   useEffect(() => {
     intersection && intersection.intersectionRatio > 0.1
-      ? focusHover("#house-icon")
+      ? animationHero()
       : notFocus("#house-icon");
   }, [intersection]);
 
@@ -63,7 +69,12 @@ const HeroSection = () => {
       className="snap-start flex justify-center items-center h-auto 2xl:h-screen bg-[#00121f] bg-[url('/assets/hero/bg-skyshare.png')] bg-top bg-fixed bg-no-repeat bg-cover"
     >
       <div className="relative flex flex-col 2xl:flex-row justify-between items-center max-w-[1700px] w-full h-full pt-[5rem] px-[1rem] lg:px-4">
-        <div className="flex flex-col gap-4 md:gap-8">
+        <div
+          className="flex flex-col gap-4 md:gap-8"
+          data-aos="fade-up"
+          data-aos-offset="500"
+          data-aos-duration="1000"
+        >
           <h1
             className={`${museo_moderno.className} text-white/75 text-2xl font-semibold`}
           >
@@ -80,11 +91,11 @@ const HeroSection = () => {
           >
             Transforming ideas into products, bringing your vision to life.
           </p>
-          <div>
+          <Link href="mailto:quickraven@skysharelabs.com">
             <button className="py-4 px-8 rounded-lg bg-[#0055D5] uppercase font-[clash] text-white font-bold hover:brightness-150 duration-300">
               Send Us An Email
             </button>
-          </div>
+          </Link>
         </div>
         <Image
           src="/assets/hero/rocket-cut.png"
@@ -92,6 +103,10 @@ const HeroSection = () => {
           height={1000}
           alt="Picture of the author"
           className="relative 2xl:absolute 2xl:bottom-0 2xl:right-0"
+          data-aos="fade-up"
+          data-aos-offset="500"
+          data-aos-delay="200"
+          data-aos-duration="1000"
         />
       </div>
     </div>
