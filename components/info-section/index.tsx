@@ -187,11 +187,9 @@ const InfoSection = () => {
                     key={index}
                     className="flex flex-row w-full max-w-[280px] items-center justify-between p-4 gap-8 rounded-lg hover:bg-[#002133] duration-300 cursor-pointer"
                   >
-                    <Link
+                    <a
                       href={data.emailUrl}
                       className="flex flex-row gap-4 items-center"
-                      onMouseEnter={() => setTitle(data.title)}
-                      onMouseLeave={() => setTitle("")}
                     >
                       <Image
                         src={data.imgUrl}
@@ -208,7 +206,7 @@ const InfoSection = () => {
                           {data.subTitle}
                         </h1>
                       </div>
-                    </Link>
+                    </a>
 
                     <Image
                       src={"/icons/click-icon.svg"}
@@ -236,11 +234,11 @@ const InfoSection = () => {
               Unlock blockchain potential with SkyShare Labs, shape the
               decentralized future!
             </h1>
-            <Link href="mailto:quickraven@skysharelabs.com">
+            <a href="mailto:quickraven@skysharelabs.com">
               <button className="py-4 px-8 rounded-lg bg-[#0055D5] uppercase font-[clash] text-white font-bold hover:brightness-150 duration-300">
                 Send Us An Email
               </button>
-            </Link>
+            </a>
           </div>
         </div>
 

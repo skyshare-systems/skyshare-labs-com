@@ -52,13 +52,9 @@ const HeroSection = () => {
     });
   };
 
-  const animationHero = () => {
-    focusHover("#house-icon");
-  };
-
   useEffect(() => {
     intersection && intersection.intersectionRatio > 0.1
-      ? animationHero()
+      ? focusHover("#house-icon")
       : notFocus("#house-icon");
   }, [intersection]);
 
@@ -91,11 +87,11 @@ const HeroSection = () => {
           >
             Transforming ideas into products, bringing your vision to life.
           </p>
-          <Link href="mailto:quickraven@skysharelabs.com">
+          <a href="mailto:quickraven@skysharelabs.com">
             <button className="py-4 px-8 rounded-lg bg-[#0055D5] uppercase font-[clash] text-white font-bold hover:brightness-150 duration-300">
               Send Us An Email
             </button>
-          </Link>
+          </a>
         </div>
         <Image
           src="/assets/hero/rocket-cut.png"
