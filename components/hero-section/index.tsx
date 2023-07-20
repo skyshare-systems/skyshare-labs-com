@@ -64,7 +64,7 @@ const HeroSection = () => {
       ref={sectionRef}
       className="snap-start flex justify-center items-center h-auto 2xl:h-screen bg-[#00121f] bg-[url('/assets/hero/bg-skyshare.png')] bg-top bg-fixed bg-no-repeat bg-cover"
     >
-      <div className="relative flex flex-col 2xl:flex-row justify-between items-center max-w-[1700px] w-full h-full pt-[5rem] px-[1rem] lg:px-4">
+      <div className="relative flex flex-col 2xl:flex-row justify-between items-center max-w-[1700px] w-full h-full pt-[5rem] px-[1rem] lg:px-[5.5rem]">
         <div
           className="flex flex-col gap-4 md:gap-8"
           data-aos="fade-up"
