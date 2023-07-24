@@ -52,13 +52,9 @@ const HeroSection = () => {
     });
   };
 
-  const animationHero = () => {
-    focusHover("#house-icon");
-  };
-
   useEffect(() => {
     intersection && intersection.intersectionRatio > 0.1
-      ? animationHero()
+      ? focusHover("#house-icon")
       : notFocus("#house-icon");
   }, [intersection]);
 
@@ -68,7 +64,7 @@ const HeroSection = () => {
       ref={sectionRef}
       className="snap-start flex justify-center items-center h-auto 2xl:h-screen bg-[#00121f] bg-[url('/assets/hero/bg-skyshare.png')] bg-top bg-fixed bg-no-repeat bg-cover"
     >
-      <div className="relative flex flex-col 2xl:flex-row justify-between items-center max-w-[1700px] w-full h-full pt-[5rem] px-[1rem] lg:px-4">
+      <div className="relative flex flex-col 2xl:flex-row justify-between items-center max-w-[1700px] w-full h-full pt-[5rem] px-[1rem] lg:px-[5.5rem]">
         <div
           className="flex flex-col gap-4 md:gap-8"
           data-aos="fade-up"
@@ -91,11 +87,12 @@ const HeroSection = () => {
           >
             Transforming ideas into products, bringing your vision to life.
           </p>
-          <Link href="mailto:quickraven@skysharelabs.com">
+          <a href="mailto:management@skysharelabs.com">
             <button className="py-4 px-8 rounded-lg bg-[#0055D5] uppercase font-[clash] text-white font-bold hover:brightness-150 duration-300">
               Send Us An Email
             </button>
-          </Link>
+            
+          </a>
         </div>
         <Image
           src="/assets/hero/rocket-cut.png"
