@@ -234,7 +234,7 @@ const InfoSection = () => {
               Unlock blockchain potential with SkyShare Labs, shape the
               decentralized future!
             </h1>
-            <a href="mailto:quickraven@skysharelabs.com">
+            <a href="mailto:management@skysharelabs.com">
               <button className="py-4 px-8 rounded-lg bg-[#0055D5] uppercase font-[clash] text-white font-bold hover:brightness-150 duration-300">
                 Send Us An Email
               </button>
